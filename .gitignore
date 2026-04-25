@@ -1,0 +1,30 @@
+## .NET / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Build artefacts
+[Dd]ebug/
+[Rr]elease/
+*.dll
+*.pdb
+
+## App data
+*.db
+*.db-shm
+*.db-wal
+wwwroot/uploads/*.pdf
+
+# media / installers
+*.mp4
+*.exe
