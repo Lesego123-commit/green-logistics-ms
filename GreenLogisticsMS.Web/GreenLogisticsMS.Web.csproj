@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <!--
+    NOTE: This project has NO Entity Framework / database packages.
+    The MVC client is a pure presentation layer - it talks to the Web API
+    over HTTP only, satisfying the SOA requirement in the Part 3 brief.
+  -->
+
+</Project>
