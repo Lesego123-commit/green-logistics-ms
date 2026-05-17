@@ -1,0 +1,82 @@
+@*
+    GLMS Part 3 SOA - shared layout.
+    Reference: Microsoft. 2024. Layout in ASP.NET Core.
+    https://learn.microsoft.com/en-us/aspnet/core/mvc/views/layout [Accessed 31 May 2026].
+*@
+@{
+    var username = Context.Session.GetString("Username");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Green Logistics MS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-success border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">🌿 Green Logistics MS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (!string.IsNullOrEmpty(username))
+                        {
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="Clients" asp-action="Index">Clients</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="Contracts" asp-action="Index">Contracts</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="Contracts" asp-action="Search">Search</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="ServiceRequests" asp-action="Index">Service Requests</a></li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav">
+                        @if (!string.IsNullOrEmpty(username))
+                        {
+                            <li class="nav-item"><span class="nav-link text-white">Signed in as <strong>@username</strong></span></li>
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-light mt-1">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Login">Login</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">&copy; 2026 - Green Logistics MS (PROG7311 Part 3 - SOA)</div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

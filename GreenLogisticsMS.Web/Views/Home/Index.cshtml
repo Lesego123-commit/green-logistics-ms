@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Home";
+    var username = Context.Session.GetString("Username");
+}
+<div class="p-5 mb-4 bg-light rounded-3 border">
+    <h1 class="display-6">Green Logistics Management System</h1>
+    <p class="lead">Service-Oriented Architecture edition - an ASP.NET Core MVC client talking to a containerised Web API.</p>
+    @if (string.IsNullOrEmpty(username))
+    {
+        <a class="btn btn-success btn-lg" asp-controller="Account" asp-action="Login">Login to continue</a>
+    }
+    else
+    {
+        <a class="btn btn-success" asp-controller="Clients" asp-action="Index">Clients</a>
+        <a class="btn btn-outline-success" asp-controller="Contracts" asp-action="Index">Contracts</a>
+        <a class="btn btn-outline-success" asp-controller="ServiceRequests" asp-action="Index">Service Requests</a>
+    }
+</div>
+<div class="row">
+    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5 class="card-title">Decoupled</h5><p class="card-text">The MVC app holds no database connection. All data flows through the Web API over HTTP.</p></div></div></div>
+    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5 class="card-title">Secure</h5><p class="card-text">JWT bearer authentication protects every API endpoint. Log in to obtain a token.</p></div></div></div>
+    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5 class="card-title">Cloud-Native</h5><p class="card-text">Database, API and web client each run in their own Docker container via docker-compose.</p></div></div></div>
+</div>

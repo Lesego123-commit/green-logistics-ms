@@ -1,0 +1,11 @@
+@model ServiceRequestModel
+@{
+    ViewData["Title"] = "Delete Service Request";
+}
+<h2 class="text-danger">Delete Service Request #@Model.Id</h2>
+<p>Delete this request: <strong>@Model.Description</strong> (USD $@Model.CostUSD.ToString("N2"))?</p>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-link" asp-action="Index">Cancel</a>
+</form>

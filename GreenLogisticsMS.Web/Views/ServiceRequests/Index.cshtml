@@ -1,0 +1,23 @@
+@model List<ServiceRequestModel>
+@{
+    ViewData["Title"] = "Service Requests";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Service Requests</h2>
+    <a class="btn btn-success" asp-action="Create">+ New Request</a>
+</div>
+<table class="table table-striped table-hover">
+    <thead><tr><th>#</th><th>Contract</th><th>Description</th><th>Type</th><th>USD</th><th>ZAR</th><th>Rate</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.Id</td><td>@s.ContractId</td><td>@s.Description</td><td>@s.RequestType</td>
+            <td>$@s.CostUSD.ToString("N2")</td><td>R@s.CostZAR.ToString("N2")</td><td>@s.ExchangeRateUsed.ToString("N4")</td>
+            <td><span class="badge bg-secondary">@s.Status</span></td>
+            <td class="text-end"><a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@s.Id">Delete</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
+@if (!Model.Any()) { <p class="text-muted">No service requests yet.</p> }

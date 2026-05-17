@@ -1,0 +1,32 @@
+@model List<ContractModel>
+@{
+    ViewData["Title"] = "Contracts";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Contracts</h2>
+    <div>
+        <a class="btn btn-outline-secondary" asp-action="Search">Search / Filter</a>
+        <a class="btn btn-success" asp-action="Create">+ New Contract</a>
+    </div>
+</div>
+<table class="table table-striped table-hover">
+    <thead><tr><th>#</th><th>Client</th><th>Start</th><th>End</th><th>Status</th><th>Level</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.Id</td>
+            <td>@c.ClientName</td>
+            <td>@c.StartDate.ToString("yyyy-MM-dd")</td>
+            <td>@c.EndDate.ToString("yyyy-MM-dd")</td>
+            <td><span class="badge bg-secondary">@c.Status</span></td>
+            <td>@c.ServiceLevel</td>
+            <td class="text-end">
+                <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@c.Id">Details</a>
+                <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@c.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@if (!Model.Any()) { <p class="text-muted">No contracts found.</p> }

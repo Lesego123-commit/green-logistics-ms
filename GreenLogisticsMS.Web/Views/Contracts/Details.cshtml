@@ -1,0 +1,29 @@
+@model ContractModel
+@{
+    ViewData["Title"] = "Contract Details";
+}
+<h2>Contract #@Model.Id</h2>
+<dl class="row">
+    <dt class="col-sm-3">Client</dt><dd class="col-sm-9">@Model.ClientName</dd>
+    <dt class="col-sm-3">Start</dt><dd class="col-sm-9">@Model.StartDate.ToString("yyyy-MM-dd")</dd>
+    <dt class="col-sm-3">End</dt><dd class="col-sm-9">@Model.EndDate.ToString("yyyy-MM-dd")</dd>
+    <dt class="col-sm-3">Status</dt><dd class="col-sm-9"><span class="badge bg-secondary">@Model.Status</span></dd>
+    <dt class="col-sm-3">Service Level</dt><dd class="col-sm-9">@Model.ServiceLevel</dd>
+    <dt class="col-sm-3">Signed Agreement</dt><dd class="col-sm-9">@(Model.SignedAgreementFileName ?? "—")</dd>
+</dl>
+
+<div class="card mb-3">
+    <div class="card-header">Change status (workflow - PATCH /api/contracts/@Model.Id/status)</div>
+    <div class="card-body">
+        <form asp-action="ChangeStatus" method="post" class="row g-2">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <div class="col-auto">
+                <select name="status" class="form-select" asp-items="Html.GetEnumSelectList<ContractStatus>()"></select>
+            </div>
+            <div class="col-auto"><button type="submit" class="btn btn-primary">Apply</button></div>
+        </form>
+    </div>
+</div>
+
+<a class="btn btn-outline-success" asp-controller="ServiceRequests" asp-action="Create" asp-route-contractId="@Model.Id">+ Service Request</a>
+<a class="btn btn-link" asp-action="Index">Back to list</a>

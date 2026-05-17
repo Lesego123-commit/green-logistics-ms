@@ -1,0 +1,15 @@
+@model ClientModel
+@{
+    ViewData["Title"] = "Delete Client";
+}
+<h2 class="text-danger">Delete Client</h2>
+<p>Are you sure you want to delete <strong>@Model.Name</strong>? This also removes its contracts.</p>
+<dl class="row">
+    <dt class="col-sm-3">Contact</dt><dd class="col-sm-9">@Model.ContactDetails</dd>
+    <dt class="col-sm-3">Region</dt><dd class="col-sm-9">@Model.Region</dd>
+</dl>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-link" asp-action="Index">Cancel</a>
+</form>
