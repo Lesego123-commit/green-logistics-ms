@@ -1,6 +1,23 @@
-# Green Logistics Management System (GLMS) — Part 3 (SOA, Docker & Automated Testing)
+# Green Logistics Management System (GLMS)
 
-PROG7311 Programming 3A — Portfolio of Evidence, Part 3.
+![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-Web%20API%20%2B%20MVC-512BD4)
+![EF Core](https://img.shields.io/badge/EF%20Core-ORM-512BD4)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-CC2927?logo=microsoftsqlserver&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker%20Compose-ready-2496ED?logo=docker&logoColor=white)
+![xUnit](https://img.shields.io/badge/Tests-xUnit-5A2D81)
+
+> A **service-oriented** logistics management system in **.NET 8**: a standalone **ASP.NET Core Web API** (EF Core + JWT, owning a SQL Server database) with a thin **MVC client** that consumes it over HTTP. The whole stack runs with one `docker compose up` and is covered by automated **xUnit integration tests**.
+
+### Highlights
+- **Service-oriented architecture** — the API and web client are separate, independently deployable services.
+- **EF Core** data layer with migrations and **JWT** authentication.
+- **Fully containerised** — API + MVC client + SQL Server orchestrated with Docker Compose.
+- Automated **unit and integration tests** (xUnit).
+- Clean layered structure: Controllers · DTOs · Services · Data · Models.
+
+*Built by Lesego Masike · originally developed as a university software-engineering portfolio project (PROG7311).*
 
 This solution refactors the Part 2 monolithic MVC prototype into a **Service-Oriented Architecture**: a stand-alone **Web API** owns the database, and a thin **MVC client** consumes that API over HTTP. The whole stack is containerised with Docker Compose and covered by automated **integration tests**.
 
